@@ -27,8 +27,8 @@ public class AddToCartPageObjects {
         AdBypass ads=new AdBypass();
         ads.closePopupAds();
        locationTab.click();
-//        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", bengaluru);
-//        bengaluru.click();
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", bengaluru);
+        bengaluru.click();
 
     }
 }
