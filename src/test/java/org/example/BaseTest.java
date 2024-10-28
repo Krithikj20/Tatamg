@@ -2,10 +2,9 @@ package org.example;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
 
 import java.time.Duration;
 
@@ -13,7 +12,7 @@ public class BaseTest {
 
     public static WebDriver driver;
     // @Parameters("browser")
-    @BeforeClass
+    @BeforeTest
     // public void setUp(String browser) {
     public void setUp() {
 //
@@ -30,18 +29,38 @@ public class BaseTest {
 //
 //        }
 
-        driver = new ChromeDriver();
-        driver.get("https://www.1mg.com/");
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        ChromeOptions options= new ChromeOptions();
+        options.addArguments("--disable-geolocation");
+    driver = new ChromeDriver(options);
+    driver.get("https://www.1mg.com/");
+//        AdBypass adBypass = null;
+//        try {
+//            adBypass = new AdBypass();
+//            adBypass.bypassAds("https://www.1mg.com/");
+//            // Add a delay to keep the browser open (for testing)
+//            Thread.sleep(5000);
+//        } catch (Exception e) {
+//            System.err.println("Error in main: " + e.getMessage());
+//        } finally {
+//            if (adBypass != null) {
+//                adBypass.quit();
+//            }
+//        }
+    driver.manage().window().maximize();
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
 
     }
 
-    @AfterClass
-    public void tearDown() {
+    @AfterTest
+    public void tearDown()
+    {
 
-        driver.quit();
+   //     driver.quit();
+
     }
+
+
 }
+
 
